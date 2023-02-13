@@ -6,9 +6,10 @@ import OtpForm from "./otpForm";
 import DetailsForm from "./detailsForm";
 import UserSuccess from "./userSucess";
 import "./index.scss";
+import 'font-awesome/css/font-awesome.min.css';
 // import bannerImg from "../../assets/Login00.png";
-import DashboardImg from "../../assets/Dashboard.svg";
-import bannerLogo from "../../assets/Logo.svg";
+import DashboardImg from "../../assets/Hero Illustration for Doc Onboarding.webp";
+import bannerLogo from "../../assets/Carepay_logo_main_no_Padding.webp";
 
 const LogIn = (props) => {
   const [state, setState] = useState({
@@ -22,6 +23,7 @@ const LogIn = (props) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // setLogInStatus(true)
     if (otpScreenShow === false) {
       setOtp("");
     }
@@ -32,7 +34,7 @@ const LogIn = (props) => {
     setLoading(true);
     let dataForSend = {
       phone_number: `${state.prefix_1.toString() + state.contactno.toString()}`,
-      doctor:true
+      doctor: true
     };
 
     axios({
@@ -58,6 +60,7 @@ const LogIn = (props) => {
 
   // funtion for send otp
   const onFinishOtp = (values) => {
+
     setLoading(true);
     let dataForSend = {
       phone_number: `${state.prefix_1.toString() + state.contactno.toString()}`,
@@ -77,45 +80,65 @@ const LogIn = (props) => {
         } else {
           setSignupError(res.data.message);
           setLoading(false);
+          
         }
       })
       .catch((e) => {
         // setLogInStatus(true);
         // alert(e?.response?.data?.error);
         console.log(e?.response?.data?.error, "response");
+
         setLoading(false);
       });
   };
 
   // function for send details
   const submitDetails = (values) => {
-    console.log(values)
+    console.log(values, '1')
+
+    if (!values.gstin) {
+      delete values.gstin
+    }
+    if (!values.cin_llpin) {
+      delete values.cin_llpin
+    }
+    console.log(values, '2')
+
     setLoading(true);
-    delete values.confirm;
-    delete values.remember;
-    axios({
-      url:  "https://www.api.carepay.one/api/doctor/create_profile",
-      method: "post",
-      data: {
-        ...values,
-        phone_number: state.prefix_1.toString() + state.contactno.toString(),
-      },
-      withCredentials: true,
-    })
-      .then((res) => {
-        setUserCreated(true);
-        if (res.data.success === 1) {
-          setLoading(false);
-        } else {
-          setSignupError(res.data.message);
-          setLoading(false);
-        }
+
+    if (values.remember === true) {
+      delete values.confirm;
+      delete values.remember;
+      axios({
+        url: "https://www.api.carepay.one/api/doctor/create_profile",
+        method: "post",
+        data: {
+          ...values,
+          phone_number: state.prefix_1.toString() + state.contactno.toString(),
+        },
+        withCredentials: true,
       })
-      .catch((e) => {
-        // alert(e?.response?.data?.error);
-        setUserCreated(true);
-        setLoading(false);
-      });
+        .then((res) => {
+          console.log(res)
+          setUserCreated(true);
+          if (res.data.msg==='sucessfully created') {
+            setLoading(false);
+            setUserCreated(true);
+          } else {
+            alert('please try again later')
+            setSignupError(res.data.msg);
+            setLoading(false);
+          }
+        })
+        .catch((e) => {
+          setUserCreated(false);
+          alert('please try again later')
+
+          setLoading(false);
+        });
+    } else {
+      alert('accept ')
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -177,16 +200,15 @@ const wraper = (content) => {
   return (
     <div className="phn-wraper">
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <img src={bannerLogo} alt="BannerLogo" />
+        <img src={bannerLogo} alt="BannerLogo" width={'60%'} />
       </div>
       <div className="image">
         <h2
           style={{
             color: "#514C9F",
             paddingTop: "40px",
-            paddingBottom: "40px",
             fontSize: "28px",
-            fontWeight: "600",
+            fontWeight: "700",
             lineHeight: "30px",
             letterSpacing: "2px",
             textAlign: "center",
