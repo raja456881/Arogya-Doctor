@@ -301,7 +301,7 @@ if(type==='Entity'){
             },
           ]}
         >
-          <Input className="background-color" placeholder=" Address" type='tel'  max='6'/>
+          <Input className="background-color" placeholder="Pincode" type='tel'  max='6'/>
         </Form.Item>
         <Form.Item
           label="City"
