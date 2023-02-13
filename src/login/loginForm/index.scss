@@ -224,6 +224,9 @@ body {
 }
 
 @media screen and (max-width: 767px) {
+  .country-list{
+    width: 340px !important;
+  }
   .spin{
     margin-top: 90% !important;
     margin-left: 39% !important;
