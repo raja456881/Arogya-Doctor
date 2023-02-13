@@ -18,7 +18,7 @@ const UserSuccess = () => (
      This typically takes around 30 mins..."
     /> */}
     <div style={{textAlign:'center'}}>   
-     <img src={PopupThank} alt=""  style={{marginTop:'50px',maxWidth:'290px'}}/>
+     <img src={PopupThank} alt="" className="size-handle"  style={{marginTop:'50px',maxWidth:'290px'}}/>
      <h2 style={{ color: "#514C9F", textAlign: "center", marginTop: "20px",fontWeight:'700',marginBottom:'20px' }}>Thank You !</h2>
 
     <p style={{padding:'10px'}}>Your application is under review,<br/>

@@ -23,7 +23,7 @@ const LogIn = (props) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // setLogInStatus(true)
+    // setUserCreated(true)
     if (otpScreenShow === false) {
       setOtp("");
     }
