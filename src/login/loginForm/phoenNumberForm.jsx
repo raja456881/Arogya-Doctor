@@ -1,15 +1,16 @@
 import PI from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { Button, Checkbox, Form, Input, Alert, message } from "antd";
+
+
 const PhoneInput = import.meta.env.PROD ? PI.default : PI;
 const PhoneNumberForm = (props) => {
 
   return (
     <Form name="basic" onFinish={() => props.onFinish()} autoComplete="off">
       <h1>Sign Up</h1>
-
-      <Form.Item
-        label="Phone Number"
+     <Form.Item
+        label="Mobile Number"
         name="Mobile Number"
         rules={[
           {

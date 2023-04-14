@@ -9,6 +9,7 @@ const OtpForm = (props) => {
       //   onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
+      
       <h1 style={{ fontWeight: 600 }}>Verify OTP</h1>
       <h2>Enter the OTP Sent to</h2>
       <div className="change-number">
@@ -17,7 +18,7 @@ const OtpForm = (props) => {
         </h3>
         <h4
           onClick={() => props.setOtoScreenShow(false)}
-          style={{ color: "#514C9F", fontWeight: 600, cursor: "pointer" }}
+          style={{ color: "#514C9F", fontWeight: 600, cursor: "pointer",textDecoration:'underline' }}
         >
           Change Number
         </h4>
@@ -30,7 +31,10 @@ const OtpForm = (props) => {
             value={props.otp}
             onChange={(e) => props.setOtp(e)}
             numInputs={4}
+            isInputNum={true}
+            type='tel'
             // separator={<span>-</span>}
+
           />
         </div>
       </Form.Item>
